@@ -54,7 +54,9 @@ def add_to_shopping_list(lists_by_name, list_name, items):
     """
 
     # your code here! 
-    lists_by_name[list_name] = items
+    existing_list = lists_by_name[list_name]
+    existing_list.extend(items)
+    lists_by_name[list_name] = existing_list
 
 
 def remove_from_shopping_list(lists_by_name, list_name, items):
@@ -70,9 +72,13 @@ def remove_from_shopping_list(lists_by_name, list_name, items):
     Returns:
       None
     """
+ 
 
-    # your code here! 
-    pass
+    item_list = lists_by_name[list_name]    
+
+    for item in items:
+        item_list.remove(item)
+
 
 
 def display_shopping_list(lists_by_name, list_name):
@@ -104,7 +110,12 @@ def show_all_lists(lists_by_name):
 
     # your code here! 
     for key, value in lists_by_name.items():
-        print key, value
+        print key
+
+        index = 0
+        while index < len(value):
+            print value[index]
+            index = index + 1
 
 
 def parse_string_of_items(items_string):
